@@ -17,6 +17,17 @@ def get_name():
 def get_age():
     return '23'
 
-@app.route('/userProfile')
+@app.route('/userProfile',methods = ['GET','POST'])
 def get_userProfile():
-    return dict(name = 'cyf',age = 23)
+    if(request.method == "GET"):
+        name = request.args.get('name','')
+        print(name)
+        if(name == 'cyf'):
+            return dict(name = 'helloworld',age = 23)
+        else:
+            return dict(name = name,age = 23)
+    elif (request.method == 'POST'):
+        print(request.form)
+        print(request.data)
+        print(request.json)
+        return '1'
