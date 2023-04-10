@@ -1,3 +1,8 @@
+# _*_ coding : utf-8 _*_
+# @Time : 2023/4/10 14:31
+# Author : 陈宇帆
+# @File : flask_test
+# @Project : test1
 from flask import Flask
 from flask import request
 app = Flask(__name__)
@@ -23,11 +28,17 @@ def get_userProfile():
         name = request.args.get('name','')
         print(name)
         if(name == 'cyf'):
-            return dict(name = 'helloworld',age = 23)
+            return dict(name = 'cyf from GET',age = 23)
         else:
-            return dict(name = name,age = 23)
+            return dict(name = 'not cyf from GET',age = 23)
     elif (request.method == 'POST'):
-        print(request.form)
-        print(request.data)
-        print(request.json)
-        return '1'
+        name = request.json.get('name')
+        if (name == 'cyf'):
+            return dict(name='cyf from POST', age=23)
+        else:
+            return dict(name='not cyf from POST', age=23)
+
+        # print(request.form)
+        # print(request.data)
+        # print(request.json)
+        # return '1'
